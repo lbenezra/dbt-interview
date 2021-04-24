@@ -1,0 +1,9 @@
+version: 2
+sources: 
+  - name: interview_task
+    database: dbt-public
+    tables:
+      - name: orders
+      - name: devices
+      - name: payments
+      - name: addresses

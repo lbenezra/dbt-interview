@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_orders
+    descripition: one record per order
+    columns:
+      - name: order_id
+        description: primary key
+        tests:
+          - unique
+          - not_null
+  - name: stg_payments
+    descripition: one record per payment
+    columns:
+      - name: order_id
+        description: primary key
+        tests:
+          - unique
+          - not_null
+      - name: payment_id
+        tests:
+         - unique
+         - not null 
+  - name: stg_devices
+    descripition: one record per device purchased
+    columns:
+      - name: type_id
+        description: foreign key
+        tests:
+          - not_null
+      - name: purchase_device_type
+        description: only contains certain values
+        tests: 
+          - accepted_values: 
+              values: ['desktop', 'mobile-app', 'mobile-web', 'unknown', 'error'] 
+  - name: stg_addresses
+    descripition: one address per user
+    columns:
+      - name: user_id
+        description: primary key
+        tests:
+          - unique
+          - not_null
