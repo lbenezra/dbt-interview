@@ -20,7 +20,7 @@ models:
       - name: payment_id
         tests:
          - unique
-         - not null 
+         - not_null 
   - name: stg_devices
     descripition: one record per device purchased
     columns:
@@ -32,7 +32,7 @@ models:
         description: only contains certain values
         tests: 
           - accepted_values: 
-              values: ['desktop', 'mobile-app', 'mobile-web', 'unknown', 'error'] 
+              values: ['desktop', 'mobile_app', 'mobile_web', 'unknown', 'error'] 
   - name: stg_addresses
     descripition: one address per user
     columns:
