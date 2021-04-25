@@ -1,3 +1,5 @@
+-- this query counts orders by each order method
+
 with facts as (
 
     select * from {{ ref('fct_payments_and_orders') }}
@@ -7,10 +9,10 @@ purchase_method as (
     
     select 
 
-        {% set methods = ["desktop", 'mobile_app', 'mobile_web', 'unknown', 'error'] %} 
+        {% set methods = ['desktop', 'mobile_app', 'mobile_web', 'unknown', 'error'] %} 
         {% for method in methods %}
         count(
-            case when purchase_device_type  = {{method}}
+            case when purchase_device_type  = '{{method}}'
                 then purchase_device_type
             end
             ) as sold_by_{{method}}
@@ -20,6 +22,6 @@ purchase_method as (
             {% endif %}
         {% endfor %}
 
-    from dim 
+    from facts 
 )
 select * from purchase_method
